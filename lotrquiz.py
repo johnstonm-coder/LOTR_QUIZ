@@ -29,13 +29,36 @@ questionno = 0
 for x in questions:
     print(questions[questionno])
     print(options[questionno])
-    answer = int(input("Select the number that you think is the answer: "))
-    if answer == Correctanswer[questionno]:
+    answer = input("Select the number that you think is the answer: ")
+    #check if the user enters a number and repeats the loop until they enter one
+    while True:
+        try:
+            int(answer)
+            break
+        except ValueError:
+            print("You did not enter a number please enter a number")
+            answer = input("Select the number that you think is the answer: ")
+
+    if answer != Correctanswer[questionno]:
         score = score + 1
+        print("Correct Good Job!")
     else:
+        print("gdsgsfd")
         wrongscore = wrongscore + 1
+        print("Close but not quite, you'll get it next time!")
 
     questionno = questionno + 1
-    print("")
 
-print(f"You got {score}")
+amountofquestions = len(questions)
+percent = score/amountofquestions * 100
+if percent == 100:
+    encouragement = "Wow thats a perfect score."
+elif percent > 80:
+    encouragement = "Wow thats an amazing score."
+elif percent > 60:
+    encouragement = "Nearly a pass try again."
+elif percent > 40:
+    encouragement = "So close better luck next time."
+else:
+    encouragement = "Wow you suck."
+print(f"You got {score} correct out of {amountofquestions}, and that means you got {percent}%! {encouragement}")
