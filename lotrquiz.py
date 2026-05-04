@@ -26,24 +26,27 @@ wrongscore = 0
 score = 0
 questionno = 0
 
-for x in questions:
+for qst in questions:
     print(questions[questionno])
     print(options[questionno])
-    answer = input("Select the number that you think is the answer: ")
+    answer = input("Select the number that you think is correct: ")
     #check if the user enters a number and repeats the loop until they enter one
     while True:
         try:
-            int(answer)
-            break
+            answer_int = int(answer)
+            if 1 <= answer_int <= 4:
+                break
+            else:
+                print("The number must be between 1 and 4.")
+                answer = input("Select the number that you think is correct: ")
         except ValueError:
-            print("You did not enter a number please enter a number")
-            answer = input("Select the number that you think is the answer: ")
+            print("You did not enter a whole number please enter a whole number")
+            answer = input("Select the number that you think is correct: ")
 
-    if answer != Correctanswer[questionno]:
+    if answer_int == Correctanswer[questionno]:
         score = score + 1
         print("Correct Good Job!")
     else:
-        print("gdsgsfd")
         wrongscore = wrongscore + 1
         print("Close but not quite, you'll get it next time!")
 
@@ -53,11 +56,11 @@ amountofquestions = len(questions)
 percent = score/amountofquestions * 100
 if percent == 100:
     encouragement = "Wow thats a perfect score."
-elif percent > 80:
+elif percent >= 80:
     encouragement = "Wow thats an amazing score."
-elif percent > 60:
+elif percent >= 60:
     encouragement = "Nearly a pass try again."
-elif percent > 40:
+elif percent >= 40:
     encouragement = "So close better luck next time."
 else:
     encouragement = "Wow you suck."
