@@ -21,11 +21,13 @@ options = ["1. Matamata\n2. Tauranga\n3. Auckland\n4. Dunedin",
         "1. 3\n2. 4\n3. 8\n4. 1\n",
         "1. Sam Wise\n2. Sauron\n3. Hitler\n4. Gandalf\n",
         "1. Mount Sunday\n2. Aoraki \n3. Mount tasman\n4. Mount ruapehu\n",]
+# this is the list of the correct answers
 Correctanswer = [1,3,2,4,2,1,2,1]
 wrongscore = 0
 score = 0
 questionno = 0
 
+#for loop that continue for each item in the question loop
 for qst in questions:
     print(questions[questionno])
     print(options[questionno])
@@ -34,15 +36,16 @@ for qst in questions:
     while True:
         try:
             answer_int = int(answer)
+            #check if the answer is between 1 and 4
             if 1 <= answer_int <= 4:
                 break
             else:
                 print("The number must be between 1 and 4.")
                 answer = input("Select the number that you think is correct: ")
         except ValueError:
-            print("You did not enter a whole number please enter a whole number")
+            print("You did not enter a whole number")
             answer = input("Select the number that you think is correct: ")
-
+    #add score if the answer is correct
     if answer_int == Correctanswer[questionno]:
         score = score + 1
         print("Correct Good Job!")
@@ -51,7 +54,8 @@ for qst in questions:
         print("Close but not quite, you'll get it next time!")
 
     questionno = questionno + 1
-
+#calculates the percentage the user gets right and print out a comment based on
+# how well they did 
 amountofquestions = len(questions)
 percent = score/amountofquestions * 100
 if percent == 100:
@@ -59,9 +63,11 @@ if percent == 100:
 elif percent >= 80:
     encouragement = "Wow thats an amazing score."
 elif percent >= 60:
-    encouragement = "Nearly a pass try again."
+    encouragement = "Thats a pass good job."
 elif percent >= 40:
     encouragement = "So close better luck next time."
 else:
     encouragement = "Wow you suck."
-print(f"You got {score} correct out of {amountofquestions}, and that means you got {percent}%! {encouragement}")
+# print out the final results in a print statement
+print(f"You got {score} correct out of {amountofquestions}, and that means you" 
+       f"got {percent}%! {encouragement}")
