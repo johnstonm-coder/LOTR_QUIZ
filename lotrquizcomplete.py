@@ -1,0 +1,85 @@
+'''
+Mitchell Johnston 20/4/2026
+This is my code about the lord of the rings and new zealand, the questions are
+ multichoice so the user has a more fair chance of getting the question correct
+'''
+#this is the list of all the questions
+questions = ["Where are the hobbits homes located in New Zealand?", 
+            "What did Gollum call the one ring?",
+            "What race are the main characters in the movies?",
+            "What is the name of the big battle in the third film?", 
+            "Where is Mt doom/Mordor in NZ?", 
+            "How many films are in the LOTR series?", 
+            "What is the name of the Dark Lord?", 
+            "What Mountain is the filming location for the Edoras"
+            " (The Capital city of Rohan) in Lord Of The Rings",]
+#this is the list of all the answers 
+options = ["1. Matamata\n2. Tauranga\n3. Auckland\n4. Dunedin", 
+        "1. His Ring\n2. His Wife\n3. His Precious\n4. His Favourite\n",
+        "1. Elf\n2. Hobbit\n3. Dwarf\n4. Orc\n",
+        "1. Battle of Helm's Deep\n2. Battle of Moscow\n3. Battle of Gate Pa"
+        "\n4. Battle of the Pelennor Fields\n",
+        "1. Mt cook\n2. Mt Ngauruhoe\n3. Taranaki\n4. Mt Maunganui\n",
+        "1. 3\n2. 4\n3. 8\n4. 1\n",
+        "1. Sam Wise\n2. Sauron\n3. Hitler\n4. Gandalf\n",
+        "1. Mount Sunday\n2. Aoraki \n3. Mount tasman\n4. Mount ruapehu\n",]
+# this is the list of the correct answers
+Correctanswer = [1,3,2,4,2,1,2,1]
+score = 0
+questionno = 0
+
+#for loop that continue for each item in the question loop
+for qst in questions:
+    print(questions[questionno])
+    print(options[questionno])
+    print("")
+    answer = input("Select the number that you think is correct: ")
+    #check if the user enters a number and repeats the loop until they enter one
+    while True:
+        try:
+            #try make their answer and integer 
+            answer_int = int(answer)
+            #check if the answer is between 1 and 4
+            if 1 <= answer_int <= 4:
+                break
+            else:
+                print("The number must be between 1 and 4.")
+                print(questions[questionno])
+                print(options[questionno])
+                answer = input("Select the number that you think is correct: ")
+        except ValueError:
+            print("You did not enter a whole number")
+            print(questions[questionno])
+            print(options[questionno])
+            answer = input("Select the number that you think is correct: ")
+    #add score if the answer is correct
+    if answer_int == Correctanswer[questionno]:
+        score = score + 1
+        print("")
+        print("Correct Good Job!")
+        print("")
+    else:
+        print("")
+        print("Close but not quite, you'll get it next time!")
+        print("")
+
+    questionno = questionno + 1
+#calculates the percentage the user gets right and print out a comment based on
+#how well they did 
+amountofquestions = len(questions)
+percent = score/amountofquestions * 100
+if percent == 100:
+    encouragement = "Wow thats a perfect score."
+elif percent >= 80:
+    encouragement = "Wow thats an amazing score."
+elif percent >= 60:
+    encouragement = "Thats a pass good job."
+elif percent >= 40:
+    encouragement = "Thats nearly pass good job."
+elif percent >= 20:
+    encouragement = "So close better luck next time."
+else:
+    encouragement = "Wow you suck."
+# print out the final results in a print statement
+print(f"You got {score} correct out of {amountofquestions}, and that means you" 
+       f"got {percent}%! {encouragement}")
